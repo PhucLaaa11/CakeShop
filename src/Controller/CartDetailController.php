@@ -47,37 +47,4 @@ class CartDetailController extends AbstractController
             'form' => $form
         ]);
     }
-    #[Route('/cart_detail/{id}', name: 'app_cart_detail_details')]
-    public function detailsAction(CartDetail $cartDetail): Response
-    {
-        return $this->render('cart_detail/details.html.twig', [
-            'cartDetail' => $cartDetail
-        ]);
-    }
-    #[Route('/cart_detail/edit/{id}', name: 'app_cart_detail_edit')]
-    public function editAction(Request $request, CartDetailRepository $cartDetailRepository, CartDetail $cartDetail): Response
-    {
-        $form = $this->createForm(CartDetailType::class, $cartDetail);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $cartDetail = $form->getData();
-            $cartDetailRepository->save($cartDetail, true);
-
-            $this->addFlash('success', 'cart_detail\'s updated successfully');
-            return $this->redirectToRoute('app_cart_detail_all');
-        }
-
-        return $this->render('cart_detail/edit.html.twig', [
-            'form' => $form
-        ]);
-    }
-    #[Route('/cart_detail/delete/{id}', name: 'app_cart_detail_delete')]
-    public function deleteAction(CartDetail $cartDetail, CartDetailRepository $cartDetailRepository): Response
-    {
-        $cartDetailRepository->remove($cartDetail, true);
-        $this->addFlash('success', 'Cart Detail has been deleted!');
-        return $this->redirectToRoute('app_cart_detail_all');
-    }
 }
