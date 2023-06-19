@@ -54,4 +54,23 @@ class CartDetailController extends AbstractController
             'cartDetail' => $cartDetail
         ]);
     }
+    #[Route('/cart_detail/edit/{id}', name: 'app_cart_detail_edit')]
+    public function editAction(Request $request, CartDetailRepository $cartDetailRepository, CartDetail $cartDetail): Response
+    {
+        $form = $this->createForm(CartDetailType::class, $cartDetail);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $cartDetail = $form->getData();
+            $cartDetailRepository->save($cartDetail, true);
+
+            $this->addFlash('success', 'cart_detail\'s updated successfully');
+            return $this->redirectToRoute('app_cart_detail_all');
+        }
+
+        return $this->render('cart_detail/edit.html.twig', [
+            'form' => $form
+        ]);
+    }
 }
