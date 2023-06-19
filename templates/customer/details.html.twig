@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Customer Detail!{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_customer_all') }}" class="btn btn-default">Back to Customer List</a>
+    <hr/>
+    <h2 class="page-header">{{ customer.name }}</h2>
+    <ul class="list-group mb-2">
+        <li class="list-group-item">Phone: {{ customer.phone }}</li>
+        <li class="list-group-item">Email: {{ customer.email }}</li>
+        <li class="list-group-item">Address: {{ customer.address }}</li>
+    </ul>
+    {#    <p>{{ customer.description }}</p>#}
+{% endblock %}

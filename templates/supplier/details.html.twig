@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Supplier!{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_supplier_all') }}" class="btn btn-default">Back to Supplier List</a>
+    <hr/>
+    <h2 class="page-header">{{ supplier.id }}</h2>
+    <ul class="list-group mb-2">
+        <li class="list-group-item">ID: {{ supplier.id }}</li>
+        <li class="list-group-item">Count: {{ supplier.name }}</li>
+        <li class="list-group-item">Due: <strong>{{ supplier.date|date('d/m/y') }}</strong></li>
+    </ul>
+{% endblock %}

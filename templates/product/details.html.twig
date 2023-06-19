@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Supplier!{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_product_all') }}" class="btn btn-default">Back to Product List</a>
+    <hr/>
+    <h2 class="page-header">{{ product.name }}</h2>
+    <ul class="list-group mb-2">
+        <li class="list-group-item">ID: {{ product.id }}</li>
+        <li class="list-group-item">Name: {{ product.name }}</li>
+        <li class="list-group-item">Main_Taste: {{ product.maintaste }}</li>
+        <li class="list-group-item">Price: {{ product.price }}</li>
+        <li class="list-group-item">Quantity: {{ product.count }}</li>
+    </ul>
+{% endblock %}

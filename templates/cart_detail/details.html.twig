@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Cart Detail!{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_cart_detail_all') }}" class="btn btn-default">Back to Cart Detail List</a>
+    <hr/>
+    <h2 class="page-header">{{ cartDetail.id }}</h2>
+    <ul class="list-group mb-2">
+        <li class="list-group-item">Id: {{ cartDetail.id }}</li>
+        <li class="list-group-item">Quantity: {{ cartDetail.quantity }}</li>
+        <li class="list-group-item">Discount: {{ cartDetail.discount }}</li>
+    </ul>
+    {#    <p>{{ cartDetail.description }}</p>#}
+{% endblock %}
