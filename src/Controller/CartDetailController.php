@@ -47,4 +47,11 @@ class CartDetailController extends AbstractController
             'form' => $form
         ]);
     }
+    #[Route('/cart_detail/{id}', name: 'app_cart_detail_details')]
+    public function detailsAction(CartDetail $cartDetail): Response
+    {
+        return $this->render('cart_detail/details.html.twig', [
+            'cartDetail' => $cartDetail
+        ]);
+    }
 }
