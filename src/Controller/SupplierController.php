@@ -65,7 +65,13 @@ class SupplierController extends AbstractController
             'form' => $form
         ]);
     }
-
+    #[Route('/supplier/delete/{id}', name: 'app_supplier_delete')]
+    public function deleteAction(Supplier $supplier, SupplierRepository $supplierRepository): Response
+    {
+        $supplierRepository->remove($supplier, true);
+        $this->addFlash('success', 'Supplier has been deleted!');
+        return $this->redirectToRoute('app_supplier_all');
+    }
     #[Route('/supplier/{id}', name: 'app_supplier_details')]
     public function detailsAction(SupplierRepository $supplierRepository, Supplier $supplier): Response
     {
