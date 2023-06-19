@@ -47,6 +47,25 @@ class CustomerController extends AbstractController
         return $this->render('customer/index.html.twig',
             ['customers' => $customers]);
     }
+    #[Route('/customer/edit/{id}', name: 'app_customer_edit')]
+    public function editAction(Request $request, CustomerRepository $customerRepository, Customer $customer): Response
+    {
+        $form = $this->createForm(CustomerType::class, $customer);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $customer = $form->getData();
+            $customerRepository->save($customer, true);
+
+            $this->addFlash('success', 'Customer\'s updated successfully');
+            return $this->redirectToRoute('app_customer_all');
+        }
+
+        return $this->render('customer/edit.html.twig', [
+            'form' => $form
+        ]);
+    }
 
     #[Route('/customer/{id}', name: 'app_customer_details')]
     public function detailsAction(Customer $customer): Response
