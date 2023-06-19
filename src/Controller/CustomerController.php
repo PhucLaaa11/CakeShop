@@ -66,7 +66,13 @@ class CustomerController extends AbstractController
             'form' => $form
         ]);
     }
-
+    #[Route('/customer/delete/{id}', name: 'app_customer_delete')]
+    public function deleteAction(Customer $customer, CustomerRepository $customerRepository): Response
+    {
+        $customerRepository->remove($customer, true);
+        $this->addFlash('success', 'Customer has been deleted!');
+        return $this->redirectToRoute('app_customer_all');
+    }
     #[Route('/customer/{id}', name: 'app_customer_details')]
     public function detailsAction(Customer $customer): Response
     {
