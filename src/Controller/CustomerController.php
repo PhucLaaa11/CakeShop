@@ -47,4 +47,12 @@ class CustomerController extends AbstractController
         return $this->render('customer/index.html.twig',
             ['customers' => $customers]);
     }
+
+    #[Route('/customer/{id}', name: 'app_customer_details')]
+    public function detailsAction(Customer $customer): Response
+    {
+        return $this->render('customer/details.html.twig', [
+            'customer' => $customer
+        ]);
+    }
 }
