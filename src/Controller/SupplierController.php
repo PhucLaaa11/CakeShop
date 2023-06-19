@@ -46,5 +46,23 @@ class SupplierController extends AbstractController
         return $this->render('supplier/index.html.twig',
             ['suppliers' => $suppliers]);
     }
+    #[Route('/supplier/edit/{id}', name: 'app_supplier_edit')]
+    public function editAction(Request $request, SupplierRepository $supplierRepository, Supplier $supplier): Response
+    {
+        $form = $this->createForm(SupplierType::class, $supplier);
 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $supplier = $form->getData();
+            $supplierRepository->save($supplier, true);
+
+            $this->addFlash('success', 'Supplier\'s updated successfully');
+            return $this->redirectToRoute('app_supplier_all');
+        }
+
+        return $this->render('supplier/edit.html.twig', [
+            'form' => $form
+        ]);
+    }
 }
