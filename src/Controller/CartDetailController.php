@@ -73,4 +73,11 @@ class CartDetailController extends AbstractController
             'form' => $form
         ]);
     }
+    #[Route('/cart_detail/delete/{id}', name: 'app_cart_detail_delete')]
+    public function deleteAction(CartDetail $cartDetail, CartDetailRepository $cartDetailRepository): Response
+    {
+        $cartDetailRepository->remove($cartDetail, true);
+        $this->addFlash('success', 'Cart Detail has been deleted!');
+        return $this->redirectToRoute('app_cart_detail_all');
+    }
 }
