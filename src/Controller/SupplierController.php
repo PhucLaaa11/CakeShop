@@ -19,6 +19,7 @@ class SupplierController extends AbstractController
             'Supplier' => 'SupplierController',
         ]);
     }
+
     #[Route('/supplier/create', name: 'app_supplier_create', priority: 1)]
     public function createAction(SupplierRepository $supplierRepository, Request $request): Response
     {
@@ -39,6 +40,7 @@ class SupplierController extends AbstractController
             'form' => $form
         ]);
     }
+
     #[Route('/supplier/all', name: 'app_supplier_all')]
     public function getCustomer(SupplierRepository $supplierRepository): Response
     {
@@ -46,6 +48,7 @@ class SupplierController extends AbstractController
         return $this->render('supplier/index.html.twig',
             ['suppliers' => $suppliers]);
     }
+
     #[Route('/supplier/edit/{id}', name: 'app_supplier_edit')]
     public function editAction(Request $request, SupplierRepository $supplierRepository, Supplier $supplier): Response
     {
@@ -65,6 +68,7 @@ class SupplierController extends AbstractController
             'form' => $form
         ]);
     }
+
     #[Route('/supplier/delete/{id}', name: 'app_supplier_delete')]
     public function deleteAction(Supplier $supplier, SupplierRepository $supplierRepository): Response
     {
@@ -72,6 +76,7 @@ class SupplierController extends AbstractController
         $this->addFlash('success', 'Supplier has been deleted!');
         return $this->redirectToRoute('app_supplier_all');
     }
+
     #[Route('/supplier/{id}', name: 'app_supplier_details')]
     public function detailsAction(SupplierRepository $supplierRepository, Supplier $supplier): Response
     {
