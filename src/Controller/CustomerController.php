@@ -39,6 +39,7 @@ class CustomerController extends AbstractController
             'form' => $form
         ]);
     }
+
     #[Route('/customer/all', name: 'app_customer_all')]
     public function getCustomer(CustomerRepository $customerRepository): Response
     {
@@ -47,6 +48,7 @@ class CustomerController extends AbstractController
         return $this->render('customer/index.html.twig',
             ['customers' => $customers]);
     }
+
     #[Route('/customer/edit/{id}', name: 'app_customer_edit')]
     public function editAction(Request $request, CustomerRepository $customerRepository, Customer $customer): Response
     {
@@ -66,6 +68,7 @@ class CustomerController extends AbstractController
             'form' => $form
         ]);
     }
+
     #[Route('/customer/delete/{id}', name: 'app_customer_delete')]
     public function deleteAction(Customer $customer, CustomerRepository $customerRepository): Response
     {
@@ -73,6 +76,7 @@ class CustomerController extends AbstractController
         $this->addFlash('success', 'Customer has been deleted!');
         return $this->redirectToRoute('app_customer_all');
     }
+
     #[Route('/customer/{id}', name: 'app_customer_details')]
     public function detailsAction(Customer $customer): Response
     {
